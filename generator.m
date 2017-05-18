@@ -22,7 +22,7 @@ function varargout = generator(varargin)
 
 % Edit the above text to modify the response to help generator
 
-% Last Modified by GUIDE v2.5 18-May-2017 18:10:18
+% Last Modified by GUIDE v2.5 18-May-2017 21:53:05
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -71,101 +71,8 @@ function varargout = generator_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
-
-
-% --- Executes on button press in gen2.
-function gen2_Callback(hObject, eventdata, handles)
-% hObject    handle to gen2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-testCases = get(handles.testcases,'String');
-opSize = get(handles.opsize,'Value');
-
-m = str2num(get(handles.m,'String'));
-n = str2num(get(handles.n,'String'));
-min = str2num(get(handles.min2,'String'));
-max = str2num(get(handles.max2,'String'));
-rng('shuffle');
-r = randi([min max],m,n);
-set(handles.op,'String',num2str(r));
-
-
-
-% --- Executes on button press in clc.
-function clc_Callback(hObject, eventdata, handles)
-% hObject    handle to clc (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-set(handles.op,'String','output');
-
-
-% --- Executes on button press in checkbox.
-function checkbox_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of checkbox
-value = get(handles.checkbox,'Value');
-if value==1
-    set(handles.p2,'Visible','Off');
-else
-    set(handles.p2,'Visible','on');
-end
-
-
-% --- Executes on button press in array.
-function array_Callback(hObject, eventdata, handles)
-% hObject    handle to array (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of array
-a = 2
-% --- Executes on button press in numbers.
-function numbers_Callback(hObject, eventdata, handles)
-% hObject    handle to numbers (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of numbers
-r = 1
-function strings_Callback(hObject, eventdata, handles)
-r=10
-
-
-
-function testcases_Callback(hObject, eventdata, handles)
-% hObject    handle to testcases (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of testcases as text
-%        str2double(get(hObject,'String')) returns contents of testcases as a double
-
-
-% --- Executes during object creation, after setting all properties.
-function testcases_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to testcases (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in opsize.
-function opsize_Callback(hObject, eventdata, handles)
-% hObject    handle to opsize (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of opsize
-
-
+global endl
+endl = sprintf('\n');
 
 function stringsize_Callback(hObject, eventdata, handles)
 % hObject    handle to stringsize (see GCBO)
@@ -297,3 +204,99 @@ function gen1_Callback(hObject, eventdata, handles)
 % hObject    handle to gen1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in array.
+function array_Callback(hObject, eventdata, handles)
+% hObject    handle to array (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of array
+a = 2
+
+% --- Executes on button press in numbers.
+function numbers_Callback(hObject, eventdata, handles)
+% hObject    handle to numbers (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of numbers
+r = 1
+function strings_Callback(hObject, eventdata, handles)
+r=10
+
+function testcases_Callback(hObject, eventdata, handles)
+% hObject    handle to testcases (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of testcases as text
+%        str2double(get(hObject,'String')) returns contents of testcases as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function testcases_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to testcases (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+% --- Executes on button press in opsize.
+function opsize_Callback(hObject, eventdata, handles)
+% hObject    handle to opsize (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of opsize
+% --- Executes on button press in gen2.
+function gen2_Callback(hObject, eventdata, handles)
+% hObject    handle to gen2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+t = get(handles.testcases,'String');
+opSize = get(handles.opsize,'Value');
+for i = 1:str2num(t)
+    m = get(handles.m,'String');
+    n = get(handles.n,'String');
+    if opSize==1
+        str1 = [m ' ' n];
+        str = get(handles.op,'String');
+        str = char(str);
+        if i==1
+            set(handles.op,'String',str1);
+        else
+            str = {str;str1};
+            set(handles.op,'String',str);
+        end
+    end
+    min = str2num(get(handles.min2,'String'));
+    max = str2num(get(handles.max2,'String'));
+    m = str2num(m);
+    n = str2num(n);
+    rng('shuffle');
+    r = randi([min max],m,n);
+    str = get(handles.op,'String');
+    str = char(str);
+    r = num2str(r);
+    if i==1 & opSize==0
+        set(handles.op,'String',r);
+    else
+        str = {str;r};
+        set(handles.op,'String',str);
+    end
+    
+end
+
+
+% --- Executes on button press in Clear.
+function Clear_Callback(hObject, eventdata, handles)
+% hObject    handle to Clear (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+set(handles.op,'String',' ');
