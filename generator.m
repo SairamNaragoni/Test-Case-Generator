@@ -73,6 +73,7 @@ function varargout = generator_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 global endl
 endl = sprintf('\n');
+set(handles.opsize,'enable','off');
 
 function stringsize_Callback(hObject, eventdata, handles)
 % hObject    handle to stringsize (see GCBO)
@@ -101,7 +102,41 @@ function gen3_Callback(hObject, eventdata, handles)
 % hObject    handle to gen3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+t = get(handles.testcases,'String');
+opSize = get(handles.opsize,'Value');
+for i = 1:str2num(t)
+    ss = get(handles.stringsize,'String');
+    sym = get(handles.custom,'String');
+    if isempty(sym)
+        errordlg('Select Preferences','No Prefernces Selected');
+        return;
+    end
+    if opSize==1
+        str = get(handles.op,'String');
+        str = char(str);
+        if i==1
+            set(handles.op,'String',ss);
+        else
+            str = {str;ss};
+            set(handles.op,'String',str);
+        end
+    end
+    ss = str2num(ss);
+    sym = char(sym);
+    rng('shuffle');
+    nums = randi(numel(sym),[1 ss]);
+    r = sym(nums);
+    str = get(handles.op,'String');
+    
+    str = char(str);
+    str = strtrim(str)
+    if i==1 & opSize==0
+        set(handles.op,'String',r);
+    else
+        str = {str;r};
+        set(handles.op,'String',str);
+    end 
+end
 
 % --- Executes on button press in checkbox1.
 function checkbox1_Callback(hObject, eventdata, handles)
@@ -110,6 +145,15 @@ function checkbox1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of checkbox1
+value = get(hObject,'Value');
+str = get(handles.custom,'String');
+sym = 'A':'Z';
+if value==1
+   sym = [str sym];
+else
+    sym = setdiff(str,sym);
+end
+set(handles.custom,'String',sym);
 
 
 % --- Executes on button press in checkbox2.
@@ -119,7 +163,15 @@ function checkbox2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of checkbox2
-
+value = get(hObject,'Value');
+str = get(handles.custom,'String');
+sym = 'a':'z';
+if value==1
+   sym = [str sym];
+else
+    sym = setdiff(str,sym);
+end
+set(handles.custom,'String',sym);
 
 % --- Executes on button press in checkbox3.
 function checkbox3_Callback(hObject, eventdata, handles)
@@ -128,9 +180,15 @@ function checkbox3_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of checkbox3
-
-
-
+value = get(hObject,'Value');
+str = get(handles.custom,'String');
+sym = '0':'9';
+if value==1
+   sym = [str sym];
+else
+    sym = setdiff(str,sym);
+end
+set(handles.custom,'String',sym);
 function custom_Callback(hObject, eventdata, handles)
 % hObject    handle to custom (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -204,8 +262,22 @@ function gen1_Callback(hObject, eventdata, handles)
 % hObject    handle to gen1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-
+t = get(handles.testcases,'String');
+for i = 1:str2num(t)
+    min = str2num(get(handles.min1,'String'));
+    max = str2num(get(handles.max1,'String'));
+    rng('shuffle');
+    r = randi([min max]);
+    str = get(handles.op,'String');
+    str = char(str);
+    r = num2str(r);
+    if i==1
+        set(handles.op,'String',r);
+    else
+        str = {str;r};
+        set(handles.op,'String',str);
+    end 
+end
 % --- Executes on button press in array.
 function array_Callback(hObject, eventdata, handles)
 % hObject    handle to array (see GCBO)
@@ -213,7 +285,7 @@ function array_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of array
-a = 2
+set(handles.opsize,'enable','on');
 
 % --- Executes on button press in numbers.
 function numbers_Callback(hObject, eventdata, handles)
@@ -222,9 +294,10 @@ function numbers_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of numbers
-r = 1
+set(handles.opsize,'enable','off');
+
 function strings_Callback(hObject, eventdata, handles)
-r=10
+set(handles.opsize,'enable','on');
 
 function testcases_Callback(hObject, eventdata, handles)
 % hObject    handle to testcases (see GCBO)
