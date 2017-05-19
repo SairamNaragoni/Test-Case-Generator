@@ -16,4 +16,4 @@
 > Redundant white spaces are added to the output.<br/>
 > Since these are test cases , white spaces doesnt effect the output of your code.<br/>
 > This will Be fixed in the next patch.<br/>
-* The menu is useless as of now, It use will be specified in the next patch
+* The menu is useless as of now, Its use will be specified in the next patch
