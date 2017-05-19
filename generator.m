@@ -102,6 +102,7 @@ function gen3_Callback(hObject, eventdata, handles)
 % hObject    handle to gen3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global endl
 t = get(handles.testcases,'String');
 opSize = get(handles.opsize,'Value');
 for i = 1:str2num(t)
@@ -127,9 +128,7 @@ for i = 1:str2num(t)
     nums = randi(numel(sym),[1 ss]);
     r = sym(nums);
     str = get(handles.op,'String');
-    
     str = char(str);
-    str = strtrim(str)
     if i==1 & opSize==0
         set(handles.op,'String',r);
     else
