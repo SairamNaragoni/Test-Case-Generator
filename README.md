@@ -12,7 +12,7 @@
 > For Random Strings geneation , Select Size Of the String And preferences<br/>
 
 #### Bugs
-* If the size is huge (like >1000), Output is required and test cases are more than 1 then,
+* If the size is huge (like >1000), Output of Size is required and test cases are more than 1 then,
 > Redundant white spaces are added to the output.<br/>
 > Since these are test cases , white spaces doesnt effect the output.<br/>
 * The menu is useless as of now, It use will be specified in the next update
