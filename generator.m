@@ -289,11 +289,8 @@ for i = 1:str2num(t)
     else
         str = {str;r};
         set(handles.op,'String',str);
-    end
-    
+    end 
 end
-
-
 % --- Executes on button press in Clear.
 function Clear_Callback(hObject, eventdata, handles)
 % hObject    handle to Clear (see GCBO)
