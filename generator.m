@@ -73,6 +73,7 @@ function varargout = generator_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 global endl
 endl = sprintf('\n');
+set(handles.opsize,'enable','off');
 
 function stringsize_Callback(hObject, eventdata, handles)
 % hObject    handle to stringsize (see GCBO)
@@ -204,8 +205,22 @@ function gen1_Callback(hObject, eventdata, handles)
 % hObject    handle to gen1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-
+t = get(handles.testcases,'String');
+for i = 1:str2num(t)
+    min = str2num(get(handles.min1,'String'));
+    max = str2num(get(handles.max1,'String'));
+    rng('shuffle');
+    r = randi([min max]);
+    str = get(handles.op,'String');
+    str = char(str);
+    r = num2str(r);
+    if i==1
+        set(handles.op,'String',r);
+    else
+        str = {str;r};
+        set(handles.op,'String',str);
+    end 
+end
 % --- Executes on button press in array.
 function array_Callback(hObject, eventdata, handles)
 % hObject    handle to array (see GCBO)
@@ -213,7 +228,7 @@ function array_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of array
-a = 2
+set(handles.opsize,'enable','on');
 
 % --- Executes on button press in numbers.
 function numbers_Callback(hObject, eventdata, handles)
@@ -222,9 +237,10 @@ function numbers_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of numbers
-r = 1
+set(handles.opsize,'enable','off');
+
 function strings_Callback(hObject, eventdata, handles)
-r=10
+set(handles.opsize,'enable','on');
 
 function testcases_Callback(hObject, eventdata, handles)
 % hObject    handle to testcases (see GCBO)
@@ -289,11 +305,8 @@ for i = 1:str2num(t)
     else
         str = {str;r};
         set(handles.op,'String',str);
-    end
-    
+    end 
 end
-
-
 % --- Executes on button press in Clear.
 function Clear_Callback(hObject, eventdata, handles)
 % hObject    handle to Clear (see GCBO)
