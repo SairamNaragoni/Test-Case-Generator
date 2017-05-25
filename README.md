@@ -1,19 +1,30 @@
- # Test-Case-Generator
-* Random Array And Number generator in Matlab
-* Specify the range of the numbers
-* Specify the size of the array
-* Specify The Size of the string
-* Check If you Need Size in output
-* Still There are few bugs in this version
-### Usage
-> For Single Line of random numbers , Select Row = 1 And Cols = N, N is no. of random numbers <br/>
-> For each random number in a new line, Select Row = M And Cols = 1 , M is no. of random numbers <br />
-> For 2-D Array generation of MxN, Select size as Row = M,cols = N <br />
-> For Random Strings geneation , Select Size Of the String And preferences<br/>
+# Test-Case-Generator
+* The Application Generates Random Numbers,Strings,Arrays,XLR type of queries.
 
-##### Bugs
-* If the size is huge (like >1000), Output of Size is required and test cases are more than 1 then,
-> Redundant white spaces are added to the output.<br/>
-> Since these are test cases , white spaces doesnt effect the output of your code.<br/>
-> This will Be fixed in the next patch.<br/>
-* The menu is useless as of now, Its use will be specified in the next patch
+## For generation of :
+#### NUMBERS
+* Select Numbers from menu.
+* Select min-max range in which you want the numbers.
+* Select no. of test cases and click generate.
+
+	
+#### ARRAYS :
+* Select Arrays From menu.
+* Select no. of rows,cols of the array.
+* Select min-max range of the numbers to be generated.
+* Select no. of test casses and Click generate.
+> If no. of rows or cols or both are very large , restict no. of test cases to min i.e 1.	</br>
+
+#### STRINGS : 
+* Select Strings from menu.
+* Select size of the string.
+*	Select Preferences of the string, Provide custom symbols if any.
+* Select no. of test cases and click generate.
+
+#### X L R : 
+* First select if you want X L R/L R i.e type of query.
+* Select min-max range for all X/L R.
+* Select conditions for L & R.
+* Click generate.
+
+> All THE OUTPUTS ARE AUTO COPIED TO CLIPBOARD
