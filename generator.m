@@ -22,7 +22,7 @@ function varargout = generator(varargin)
 
 % Edit the above text to modify the response to help generator
 
-% Last Modified by GUIDE v2.5 25-May-2017 14:12:32
+% Last Modified by GUIDE v2.5 12-Jun-2017 22:22:08
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -218,6 +218,8 @@ set(handles.status,'String','Copied to Clipboard !');
 
 % --- Executes on button press in array.
 function array_Callback(hObject, eventdata, handles)
+set(handles.drow,'enable','on');
+set(handles.dcol,'enable','on');
 set(handles.opsize,'enable','on');
 set(handles.tcs,'enable','on');
 set(handles.testcases,'enable','on');
@@ -228,6 +230,8 @@ set(handles.p4,'visible','off');
 
 % --- Executes on button press in numbers.
 function numbers_Callback(hObject, eventdata, handles)
+set(handles.drow,'enable','off');
+set(handles.dcol,'enable','off');
 set(handles.opsize,'enable','off');
 set(handles.tcs,'enable','on');
 set(handles.testcases,'enable','on');
@@ -238,6 +242,8 @@ set(handles.p4,'visible','off');
 
 % --- Executes on button press in Strings.
 function strings_Callback(hObject, eventdata, handles)
+set(handles.drow,'enable','off');
+set(handles.dcol,'enable','off');
 set(handles.opsize,'enable','on');
 set(handles.tcs,'enable','on');
 set(handles.testcases,'enable','on');
@@ -259,9 +265,22 @@ if str2double(t)<=0
         set(handles.status,'String','Error');
         return;
 end
-opSize = get(handles.opsize,'Value');
 m = get(handles.m,'String');
 n = get(handles.n,'String');
+opSize = get(handles.opsize,'Value');
+if opSize==1
+    ssrow = get(handles.drow,'Value');
+    sscol = get(handles.dcol,'Value');
+    if ssrow==1 && sscol ==1
+    ss = [m ' ' n];
+else if ssrow==1 && sscol~=1
+    ss = m;
+else if ssrow~=1 && sscol==1
+    ss = n;
+    end
+    end
+    end
+end
 mnum = str2double(m);
 nnum = str2double(n);
 min = str2double(get(handles.min2,'String'));
@@ -275,7 +294,6 @@ ans = zeros(mnum,nnum);
 set(handles.status,'String','Generating Random Arrays');
 for i = 1:str2double(t)
     if opSize==1
-        ss = [m ' ' n];
         if i==1
             ans = {ss};
         else
@@ -429,7 +447,6 @@ set(handles.e,'enable','on');
 function xlr_Callback(hObject, eventdata, handles)
 set(handles.uibuttongroup4,'visible','on');
 
-
 % --- Executes on button press in lr.
 function lr_Callback(hObject, eventdata, handles)
 set(handles.uibuttongroup4,'visible','off');
@@ -440,6 +457,8 @@ set(handles.e,'enable','off');
 
 % --- Executes on button press in xlr2.
 function xlr2_Callback(hObject, eventdata, handles)
+set(handles.drow,'enable','off');
+set(handles.dcol,'enable','off');
 set(handles.opsize,'enable','off');
 set(handles.tcs,'enable','off');
 set(handles.testcases,'enable','off');
@@ -447,3 +466,43 @@ set(handles.p1,'visible','off');
 set(handles.p2,'visible','off');
 set(handles.p3,'visible','off');
 set(handles.p4,'visible','on');
+
+
+% --- Executes on button press in opsize.
+function opsize_Callback(hObject, eventdata, handles)
+opSize = get(handles.opsize,'Value');
+if opSize==0
+    set(handles.drow,'enable','off');
+    set(handles.dcol,'enable','off');
+else
+    set(handles.drow,'enable','on');
+    set(handles.dcol,'enable','on');
+end
+ssrow = get(handles.drow,'Value');
+sscol = get(handles.dcol,'Value');
+if ssrow==0 && sscol==0
+    set(handles.drow,'value',1);
+    set(handles.dcol,'Value',1);
+end
+
+
+
+% --- Executes on button press in drow.
+function drow_Callback(hObject, eventdata, handles)
+ssrow = get(handles.drow,'Value');
+sscol = get(handles.dcol,'Value');
+if ssrow==0 && sscol==0
+    set(handles.opsize,'Value',0);
+    set(handles.drow,'enable','off');
+    set(handles.dcol,'enable','off');
+end
+
+% --- Executes on button press in dcol.
+function dcol_Callback(hObject, eventdata, handles)
+ssrow = get(handles.drow,'Value');
+sscol = get(handles.dcol,'Value');
+if ssrow==0 && sscol==0
+    set(handles.opsize,'Value',0);
+    set(handles.drow,'enable','off');
+    set(handles.dcol,'enable','off');
+end
