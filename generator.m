@@ -22,7 +22,7 @@ function varargout = generator(varargin)
 
 % Edit the above text to modify the response to help generator
 
-% Last Modified by GUIDE v2.5 27-May-2017 21:55:23
+% Last Modified by GUIDE v2.5 12-Jun-2017 22:22:08
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -470,11 +470,6 @@ set(handles.p4,'visible','on');
 
 % --- Executes on button press in opsize.
 function opsize_Callback(hObject, eventdata, handles)
-% hObject    handle to opsize (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of opsize
 opSize = get(handles.opsize,'Value');
 if opSize==0
     set(handles.drow,'enable','off');
@@ -482,4 +477,32 @@ if opSize==0
 else
     set(handles.drow,'enable','on');
     set(handles.dcol,'enable','on');
+end
+ssrow = get(handles.drow,'Value');
+sscol = get(handles.dcol,'Value');
+if ssrow==0 && sscol==0
+    set(handles.drow,'value',1);
+    set(handles.dcol,'Value',1);
+end
+
+
+
+% --- Executes on button press in drow.
+function drow_Callback(hObject, eventdata, handles)
+ssrow = get(handles.drow,'Value');
+sscol = get(handles.dcol,'Value');
+if ssrow==0 && sscol==0
+    set(handles.opsize,'Value',0);
+    set(handles.drow,'enable','off');
+    set(handles.dcol,'enable','off');
+end
+
+% --- Executes on button press in dcol.
+function dcol_Callback(hObject, eventdata, handles)
+ssrow = get(handles.drow,'Value');
+sscol = get(handles.dcol,'Value');
+if ssrow==0 && sscol==0
+    set(handles.opsize,'Value',0);
+    set(handles.drow,'enable','off');
+    set(handles.dcol,'enable','off');
 end
