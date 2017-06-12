@@ -13,6 +13,7 @@
 * Select no. of rows,cols of the array.
 * Select min-max range of the numbers to be generated.
 * Select no. of test casses and Click generate.
+* Also select to output either row/col/both.
 > If no. of rows or cols or both are very large , restict no. of test cases to min i.e 1.	</br>
 
 #### STRINGS : 
